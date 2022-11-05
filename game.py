@@ -44,11 +44,10 @@ class TicTacToe:
         # after move checking if won
         if self.victory(square, letter):
             self.current_winner = letter
-            return True
-        return False
 
 # play function
 def play(game, x_player, o_player):
+    # RETURN THE WINNER
     
     # print num_board
     game.print_board_num()
@@ -61,6 +60,25 @@ def play(game, x_player, o_player):
             square = x_player.get_move(game)
         else:
             square = o_player.get_move(game)
+        
+        # now we know next move, --> make the move
+        game.make_move(square, letter)
+        print(letter + f" makes a move to square {square}")
+        game.print_board()
+        print()
+
+        if game.current_winner:
+            print(letter + " WINS $$$")
+            return letter
+
+        # swap letter, next player
+        letter = 'O' if letter == 'X' else 'O'
+    # after while loop ends
+    print("It's a Tie ")
+
+
+
+
         
 
     
