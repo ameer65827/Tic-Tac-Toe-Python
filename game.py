@@ -1,5 +1,6 @@
 
-
+from player import HumanPlayer, RandomComputerPlayer
+from time import sleep
 
 class TicTacToe:
     def __init__(self):
@@ -109,6 +110,12 @@ def play(game, x_player, o_player):
 
 
 
+if __name__ == '__main__':
+    x_player = HumanPlayer('X')
+    y_player = HumanPlayer('Y')
+    my_game = TicTacToe()
+
+    play(my_game, x_player, y_player)
 
         
 
