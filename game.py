@@ -63,7 +63,7 @@ class TicTacToe:
         
         #checking diagonals
         # we know if the move is not even, then it cannot form a diagonal, so first check even
-        if square % 2 = 0:
+        if square % 2 == 0:
             diagonal1 = [self.board[i] for i in [0, 4, 8]]
             if all(spot == letter for spot in diagonal1):
                 return True
@@ -81,7 +81,7 @@ def play(game, x_player, o_player):
     # RETURN THE WINNER
     
     # print num_board
-    game.print_board_num()
+    game.print_board_nums()
 
     letter = 'X'
 
@@ -89,8 +89,10 @@ def play(game, x_player, o_player):
 
         if letter == 'X':
             square = x_player.get_move(game)
+            sleep(0.2)
         else:
             square = o_player.get_move(game)
+            sleep(1)
         
         # now we know next move, --> make the move
         game.make_move(square, letter)
@@ -103,7 +105,7 @@ def play(game, x_player, o_player):
             return letter
 
         # swap letter, next player
-        letter = 'O' if letter == 'X' else 'O'
+        letter = 'O' if letter == 'X' else 'X'
         
     # after while loop ends
     print("It's a Tie ")
@@ -112,10 +114,10 @@ def play(game, x_player, o_player):
 
 if __name__ == '__main__':
     x_player = HumanPlayer('X')
-    y_player = HumanPlayer('Y')
+    o_player = RandomComputerPlayer('O')
     my_game = TicTacToe()
 
-    play(my_game, x_player, y_player)
+    play(my_game, x_player, o_player)
 
         
 
