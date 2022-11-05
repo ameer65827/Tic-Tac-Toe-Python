@@ -36,7 +36,16 @@ class TicTacToe:
         return self.board.count()
     
 
+    # make move fn
+    def make_move(self, square, letter):
+        # better if we check the square is free
+        self.board[square] = letter
         
+        # after move checking if won
+        if self.victory(square, letter):
+            self.current_winner = letter
+            return True
+        return False
 
 # play function
 def play(game, x_player, o_player):
@@ -47,8 +56,11 @@ def play(game, x_player, o_player):
     letter = 'X'
 
     while game.empty_squares():
-        
 
         if letter == 'X':
-            pass
+            square = x_player.get_move(game)
+        else:
+            square = o_player.get_move(game)
+        
+
     
