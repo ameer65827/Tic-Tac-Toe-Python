@@ -28,19 +28,18 @@ class HumanPlayer(Player):
         super.__init__(letter)
     
     def get_move(self, game):
-        valid_square = False
         square = None
 
-        while not valid_square:
+        while True:
             # getting input from user for next move
             square = input(self.letter + "'s turn. Input move(0-8): ")
 
             #checking if input is valid
-
             try:
                 square = int(square)  # raise ValueError if square is not int
                 if square not in game.available_moves():
                     raise ValueError
+                return square         # if all condition are satisfied(no error), that square is returned
             except:
                 print("Invalid move, Try again !!!")
 
