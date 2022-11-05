@@ -44,6 +44,36 @@ class TicTacToe:
         # after move checking if won
         if self.victory(square, letter):
             self.current_winner = letter
+        return
+    
+    def victory(self, square, letter):
+
+        # checking row
+        row_indx = square // 3
+        row = self.board[row_indx*3: (row_indx + 1)*3]
+        if all(spot == letter for spot in row):
+            return True
+        
+        # checking row
+        col_indx = square % 3
+        col = [self.board[col_indx + (i*3)] for i in range(3)]
+        if all(spot == letter for spot in col):
+            return True
+        
+        #checking diagonals
+        # we know if the move is not even, then it cannot form a diagonal, so first check even
+        if square % 2 = 0:
+            diagonal1 = [self.board[i] for i in [0, 4, 8]]
+            if all(spot == letter for spot in diagonal1):
+                return True
+            diagonal2 = [self.board[i] for i in [2, 4, 6]]
+            if all(spot == letter for spot in diagonal2):
+                return True
+        # if all of these fails
+        return False
+        
+
+
 
 # play function
 def play(game, x_player, o_player):
@@ -73,6 +103,7 @@ def play(game, x_player, o_player):
 
         # swap letter, next player
         letter = 'O' if letter == 'X' else 'O'
+        
     # after while loop ends
     print("It's a Tie ")
 
