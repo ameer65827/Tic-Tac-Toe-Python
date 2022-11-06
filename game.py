@@ -22,19 +22,13 @@ class TicTacToe:
     
     def available_moves(self):
         # finding all available free square (that is -> ' ')
-        # return [i for i, spot in enumerate(self.board) if sport == ' ']
-        moves = []
-        for i, spot in enumerate(self.board):
-            if spot == ' ':
-                moves.append(i)
-        return moves
-    
+        return [i for i, spot in enumerate(self.board) if spot == ' ']
+
+
     # checking if empty square available
     def empty_squares(self):
         return ' ' in self.board
-    
-    def num_empty_squares(self):
-        return self.board.count()
+
     
 
     # make move fn
