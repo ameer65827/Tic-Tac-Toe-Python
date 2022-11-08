@@ -63,6 +63,7 @@ class TicTacToe:
     
 def play(x_player, o_player, game):
     game.print_board([val for val in range(1, 9+1)])
+    sleep(1)
     
     letter = 'X'  # let X is the first player
     
@@ -78,6 +79,7 @@ def play(x_player, o_player, game):
         print(letter + f" makes a move to square {square}")
         game.print_board(game.board)
         print()
+        sleep(1)
 
         #check victory
         if game.victory(square, letter):
