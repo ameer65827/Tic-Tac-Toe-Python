@@ -1,4 +1,6 @@
 from player import HumanPlayer, RandomComputerPlayer
+from time import sleep
+
 
 
 class TicTacToe:
@@ -72,6 +74,7 @@ def play(x_player, o_player, game):
 
         # make the move
         game.make_move(square, letter)
+        sleep(0.5)
         print(letter + f" makes a move to square {square}")
         game.print_board(game.board)
         print()
