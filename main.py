@@ -41,12 +41,19 @@ def play(x_player, o_player, game):
 
     sleep(0.5)
 
-    letter = 'X'  # let first player be 'X'
+    letter = 'O'  # let first player be 'X'
 
     # loop untile no further moves
     while game.available_moves():
         if letter == 'X':
-            move = x_player.get_move(game, letter)
+            move = x_player.one_move_win_check(game)
+
+            if move == -1:  # cant staright win
+                # check if opponend can win
+                move = o_player.one_move_win_check(game)
+                if move == -1:
+                    move = x_player.get_move(game)
+
         else:
             move = o_player.get_move(game)
         
