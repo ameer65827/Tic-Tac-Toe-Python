@@ -2,5 +2,4 @@
 # computer tries to win itself
 # computer tries to stop opponent from winning
 
-~~~hai~~~
-
+hello '#ffffff'
