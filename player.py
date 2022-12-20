@@ -1,49 +1,54 @@
 import random
 
-# super class
-from random import Random
-
-
 class Player:
     def __init__(self, letter):
         self.letter = letter
-
-    # we want all player to get next move when given a game
-    def get_move(self, game):
+    
+    def get_move(self):
         pass
 
-
-class RandomComputerPlayer(Player):
+class ComputerPlayer(Player):
     def __init__(self, letter):
         super().__init__(letter)
     
-    def get_move(self, game):
-        square = random.choice(game.available_moves())
-        return square
+    # return the move made by Computer
+    # def get_move(self, game):
+        # return random.choice(game.available_moves())
 
-
+    # just more intelligent moves
+    def get_move(self, game, letter):
+        move = random.choice(game.available_moves())
+        for rcd in game.winning_set:                # rcd -> row col diagonal.
+            if any(game.board[spot] == letter for spot in rcd):
+                count_empty = 0
+                count_O = 0
+                empty_spots = []
+                for e in rcd:
+                    if game.board[e] == ' ':
+                        count_empty += 1                # counts no. of empty spot
+                        empty_spots.append(e)
+                    elif game.board[e] == 'O':
+                        count_O += 1
+                if count_empty == 1 and count_O == 0:   # one move win
+                    return empty_spots[0]
+                elif count_empty == 2:
+                    move = empty_spots[0]
+        return move
 
 class HumanPlayer(Player):
     def __init__(self, letter):
         super().__init__(letter)
-    
+
+    # get move from user and return it
     def get_move(self, game):
-        square = None
-
         while True:
-            # getting input from user for next move
-            square = input(self.letter + "'s turn. Input move(0-8): ")
+            inp = input("Your turn, Input move(1-9): ")
 
-            #checking if input is valid
             try:
-                square = int(square)  # raise ValueError if square is not int
-                if square not in game.available_moves():
+                inp = int(inp) - 1
+                if inp in game.available_moves():
+                    return inp
+                else:
                     raise ValueError
-                return square         # if all condition are satisfied(no error), that square is returned
             except:
-                print("Invalid move, Try again !!!")
-
-
-
-
-
+                print("INVALID MOVE, TRY AGAIN !!!")
